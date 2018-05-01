@@ -7,12 +7,13 @@ def main():
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
     print("Let's drive!")
     menu_selection = input("q)uit, c)hoose taxi, d)rive")
-    chosen_taxi = 0
+    choice = 0
+    bill_total = 0
     while menu_selection != "q":
         if menu_selection == "c":
             choose_taxi(taxis)
         elif menu_selection == "d":
-            drive_taxi(chosen_taxi)
+            drive_taxi(taxis, choice)
         menu_selection = input("q)uit, c)hoose taxi, d)rive")
     print("Total trip cost: ${:.2f}")
 
@@ -21,12 +22,13 @@ def choose_taxi(taxis):
     for taxi in taxis:
         print("{} - {}".format(count, taxi))
         count += 1
-    chosen_taxi = input(taxis[])
-    return chosen_taxi
+    choice = input("Choose a taxi.")
+    return choice
 
-def drive_taxi(chosen_taxi):
-    distance = input("Drive how far?")
+def drive_taxi(taxis, choice):
+    chosen_taxi = taxis[choice]
+    distance = int(input("Drive how far?"))
     chosen_taxi.drive(distance)
-    print ("Bill to date: ${:.2f}".format(chosen_taxi.get_fare()))
+    print("Bill to date: ${:.2f}".format(chosen_taxi.get_fare()))
 
 main()
